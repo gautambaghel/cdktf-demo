@@ -1,0 +1,13 @@
+{
+  "language": "python",
+  "app": "pipenv run python main.py",
+  "projectId": "8fa5a98d-bef3-44e9-afe8-1e1da67d6744",
+  "sendCrashReports": "true",
+  "terraformProviders": [],
+  "terraformModules": ["terraform-aws-modules/vpc/aws@2.77.0"],
+  "codeMakerOutput": "imports",
+  "context": {
+    "excludeStackIdFromLogicalIds": "true",
+    "allowSepCharsInLogicalIds": "true"
+  }
+}
