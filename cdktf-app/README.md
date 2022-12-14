@@ -17,10 +17,23 @@
 
 ```bash
  > pipenv run python main.py 
+ 
+[?] What size of machines do you need?: micro
+   nano
+ > micro
+   small
+   medium
+   large
 
- .
- .
- .
+[?] Which regions should these instances be deployed?: 
+   [ ] us-east-1
+   [X] us-east-2
+   [ ] us-west-1
+ > [X] us-west-2
+
+[?] Which action would you like to take?: apply
+ > apply
+   destroy
 
 Synth completed successfully!
 
