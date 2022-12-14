@@ -48,22 +48,23 @@ action_answer = inquirer.prompt(action)
 
 # initilize App
 app = App()
+stack_names = ""
 for region in regions_answers["regions"]:
   name = "prod-" + region
+  stack_names = name + " " + stack_names
   instance_type = "t2." + size_answer["size"]
   index = all_regions.index(region)
   stack = Ec2Stack(app, id=name, name=name, provider_region=region, region_ami=all_amis[index], instance_type=instance_type)
   CloudBackend(stack,
     hostname='app.terraform.io',
-    organization='tfc-integration-sandbox',
+    organization='alliances',
     workspaces=NamedCloudWorkspace(name)
   )
 
 # synthesize App
 app.synth()
 
-# do manual Terraform Apply
-for region in regions_answers["regions"]:
-  name = "prod-" + region
-  init_tf = subprocess.run(["terraform", "-chdir=cdktf.out/stacks/"+name, "init"])
-  run_tf = subprocess.run(["terraform", "-chdir=cdktf.out/stacks/"+name, str(action_answer["action"]), "-auto-approve"])
+print('Synth completed successfully!\n')
+
+print('To create resources run: cdktf deploy --app "echo skipping-synth" '+ stack_names +'--auto-approve\n')
+print('To delete resources run: cdktf destroy --app "echo skipping-synth" '+ stack_names +'--auto-approve\n')
