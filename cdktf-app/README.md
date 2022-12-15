@@ -13,7 +13,8 @@
  > pipenv install inquirer cdktf-cdktf-provider-aws
 ```
 
-### Synth terraform
+> **_NOTE:_**  CDKTF currently doesn't support creating workspaces, they need to pre-exist in Terraform Cloud already with AWS credentials attached either as variables or [variable sets](https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets)
+### Run python and create resources
 
 ```bash
  > pipenv run python main.py 
@@ -35,24 +36,17 @@
  > apply
    destroy
 
-Synth completed successfully!
+skipping-synth
 
-To create resources run: cdktf deploy --app "echo skipping-synth" prod-us-west-2 prod-us-east-2 --auto-approve
+prod-us-west-2  Creating Terraform Cloud configuration version
+prod-us-east-2  Creating Terraform Cloud configuration version
+.
+.
+.
+    Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+    Outputs: 0
+                
+prod-us-east-2  Fetching Terraform Cloud outputs
 
-To delete resources run: cdktf destroy --app "echo skipping-synth" prod-us-west-2 prod-us-east-2 --auto-approve
-
-```
-
-> **_NOTE:_**  CDKTF currently doesn't support creating workspaces, they need to pre-exist in Terraform Cloud already with AWS credentials attached either as variables or [variable sets](https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets)
-
-### Deploy stacks
-
-```bash
- > cdktf deploy --app "echo skipping-synth" prod-us-east-2 prod-us-west-2 --auto-approve
-```
-
-### Destroy stacks
-
-```bash
- > cdktf destroy --app "echo skipping-synth" prod-us-east-2 prod-us-west-2 --auto-approve
+No outputs found.
 ```

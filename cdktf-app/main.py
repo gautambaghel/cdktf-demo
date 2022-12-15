@@ -41,7 +41,7 @@ regions_answers = inquirer.prompt(regions)
 action = [
 inquirer.List('action',
               message="Which action would you like to take?",
-              choices=['apply', 'destroy'],
+              choices=['deploy', 'destroy'],
           ),
 ]
 action_answer = inquirer.prompt(action)
@@ -64,7 +64,4 @@ for region in regions_answers["regions"]:
 # synthesize App
 app.synth()
 
-print('Synth completed successfully!\n')
-
-print('To create resources run: cdktf deploy --app "echo skipping-synth" '+ stack_names +'--auto-approve\n')
-print('To delete resources run: cdktf destroy --app "echo skipping-synth" '+ stack_names +'--auto-approve\n')
+subprocess.run("cdktf {} --app 'echo skipping-synth' {}--auto-approve".format(str(action_answer["action"]),stack_names), shell=True, check=True)
